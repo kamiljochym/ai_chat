@@ -34,7 +34,7 @@ export default function Home() {
 
             setResult(data.result)
             setMessageInput('')
-        } catch (error) {
+        } catch (error: any) {
             // Consider implementing your own error handling logic here
             console.error(error)
             alert(error.message)

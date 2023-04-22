@@ -6,6 +6,7 @@
 // const openai = new OpenAIApi(configuration)
 // console.log(process.env.OPENAI_API_KEY)
 require('dotenv').config()
+import {NextApiRequest, NextApiResponse} from 'next/types'
 import {Configuration, OpenAIApi} from 'openai'
 
 const configuration = new Configuration({
@@ -13,7 +14,7 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-export default async function (req, res) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
     if (!configuration.apiKey) {
         res.status(500).json({
             error: {
@@ -50,7 +51,7 @@ export default async function (req, res) {
             temperature: 0.6,
         })
         res.status(200).json({result: completion.data.choices[0].text})
-    } catch (error) {
+    } catch (error: any) {
         // Consider adjusting the error handling logic for your use case
         if (error.response) {
             console.error(error.response.status, error.response.data)
