@@ -54,10 +54,16 @@ export default function Home() {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <main className={`${styles.main} ${inter.className}`}>
-                <h1>Ask me anything!</h1>
-                <div className={styles.description}>{result}</div>
-                <input onChange={handleChange}></input>
-                <button onClick={onSubmit}>Test button</button>
+                <h1 className={styles.heading}>Ask me anything!</h1>
+                <div className={styles.chatContainer}>
+                    <div className={styles.chat}>
+                        <p>{result}</p>
+                    </div>
+                </div>
+                <div className={styles.inputContainer}>
+                    <input className={styles.inputBox} onChange={handleChange}></input>
+                    <button onClick={onSubmit}>Send</button>
+                </div>
             </main>
         </>
     )
