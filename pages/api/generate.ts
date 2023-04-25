@@ -8,11 +8,17 @@
 require('dotenv').config()
 import {NextApiRequest, NextApiResponse} from 'next/types'
 import {Configuration, OpenAIApi} from 'openai'
+import {type} from 'os'
 
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 })
 const openai = new OpenAIApi(configuration)
+
+type Messages = {
+    role: string
+    content: string
+}
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
     if (!configuration.apiKey) {
@@ -45,9 +51,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
+        const prompt = generatePrompt(message, character)
         const completion = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: generatePrompt(message, character),
+            messages: prompt,
             temperature: 0.6,
         })
         console.log(completion.data.choices[0].message)
