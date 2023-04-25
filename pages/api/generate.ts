@@ -45,12 +45,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
-        const completion = await openai.createCompletion({
-            model: 'text-davinci-003',
-            prompt: generatePrompt(message, character),
+        const completion = await openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
+            messages: generatePrompt(message, character),
             temperature: 0.6,
         })
-        res.status(200).json({result: completion.data.choices[0].text})
+        console.log(completion.data.choices[0].message)
+
+        res.status(200).json({result: completion.data.choices[0].message})
     } catch (error: any) {
         // Consider adjusting the error handling logic for your use case
         if (error.response) {
@@ -68,9 +70,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 }
 
 function generatePrompt(message: String, character: String) {
-    return `User: Hi what is your name?
-          Homer: D'oh, my name is Homer Simpson!
-          user: ${message} 
-          Homer:  
-          `
+    return [
+        {role: 'system', content: `You are ${character}`},
+        {role: 'user', content: 'Hi what is your name?'},
+        {role: 'assistant', content: "D'oh, my name is Homer Simpson!"},
+        {role: 'user', content: `${message}`},
+    ]
 }

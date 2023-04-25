@@ -8,12 +8,12 @@ import {log} from 'console'
 const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
-    const [result, setResult] = useState('')
-    const [messageInput, setMessageInput] = useState(
-        'what are some of your legendary catchphrases?'
-    )
+    const [result, setResult] = useState<{role: string; content: string}[]>([])
+    const [messageInput, setMessageInput] = useState('')
     const [character, setCharacter] = useState('Homer Simpson')
     const onSubmit = async (event: React.MouseEvent<HTMLElement>) => {
+        setResult((prevResult) => [...prevResult, {role: 'user', content: messageInput}])
+        // setMessageInput('')
         event.preventDefault()
         try {
             const response = await fetch('/api/generate', {
@@ -31,9 +31,9 @@ export default function Home() {
                     new Error(`Request failed with status ${response.status}`)
                 )
             }
+            console.log(data.result)
 
-            setResult(data.result)
-            setMessageInput('')
+            setResult((prevResult) => [...prevResult, data.result])
         } catch (error: any) {
             // Consider implementing your own error handling logic here
             console.error(error)
@@ -57,11 +57,17 @@ export default function Home() {
                 <h1 className={styles.heading}>Ask me anything!</h1>
                 <div className={styles.chatContainer}>
                     <div className={styles.chat}>
-                        <p>{result}</p>
+                        {result.map((msg) => (
+                            <p className={`${styles[msg.role]}`}>{msg.content}</p>
+                        ))}
                     </div>
                 </div>
                 <div className={styles.inputContainer}>
-                    <input className={styles.inputBox} onChange={handleChange}></input>
+                    <input
+                        className={styles.inputBox}
+                        value={messageInput}
+                        onChange={handleChange}
+                    ></input>
                     <button onClick={onSubmit}>Send</button>
                 </div>
             </main>

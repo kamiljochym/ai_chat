@@ -1,9 +1,8 @@
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 6rem;
+    padding: 2rem;
     min-height: 100vh;
 }
 
@@ -16,8 +15,6 @@
     justify-content: inherit;
     align-items: inherit;
     font-size: 0.85rem;
-    max-width: var(--max-width);
-    width: max-content;
     z-index: 2;
     font-family: var(--font-mono);
 }
@@ -25,17 +22,31 @@
 .chat p {
     position: relative;
     margin: 0;
+    margin-bottom: 10px;
     padding: 1rem;
     background-color: rgba(var(--callout-rgb), 0.5);
     border: 1px solid rgba(var(--callout-border-rgb), 0.3);
     border-radius: var(--border-radius);
+    max-width: 80%;
+    width: max-content;
+}
+
+.user {
+    background-color: #1982fc !important;
+    color: white;
+    margin-left: auto !important;
 }
 
 .chatContainer {
     background-color: white;
     max-width: 900px;
     width: 100%;
+    height: 70vh;
     padding: 20px;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    scroll-behavior: auto;
+    overflow: scroll;
 }
 
 .inputContainer {
