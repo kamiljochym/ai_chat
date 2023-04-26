@@ -12,7 +12,10 @@ export default function Home() {
     const [result, setResult] = useState<{role: string; content: string}[]>([])
     const [messageInput, setMessageInput] = useState('')
     const [character, setCharacter] = useState('Homer Simpson')
-    const onSubmit = async (event: React.MouseEvent<HTMLElement>) => {
+
+    const onSubmit = async (
+        event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+    ) => {
         setResult((prevResult) => [...prevResult, {role: 'user', content: messageInput}])
         setMessageInput('')
         event.preventDefault()
@@ -46,7 +49,7 @@ export default function Home() {
         setMessageInput(event.target.value)
     }
 
-    const handleEnter = (event) => {
+    const handleEnter = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key == 'Enter') {
             event.preventDefault()
             onSubmit(event)
