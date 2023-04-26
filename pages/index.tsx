@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import {Inter} from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import {ChangeEvent, useState, MouseEvent} from 'react'
+import {ChangeEvent, useState, MouseEvent, HtmlHTMLAttributes} from 'react'
 import {log} from 'console'
+import {resolve} from 'path/win32'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -45,6 +46,13 @@ export default function Home() {
         setMessageInput(event.target.value)
     }
 
+    const handleEnter = (event) => {
+        if (event.key == 'Enter') {
+            event.preventDefault()
+            onSubmit(event)
+        }
+    }
+
     return (
         <>
             <Head>Chat To Fictional Characters</Head>
@@ -62,8 +70,11 @@ export default function Home() {
                         className={styles.inputBox}
                         value={messageInput}
                         onChange={handleChange}
+                        onKeyDown={handleEnter}
                     ></textarea>
-                    <button onClick={onSubmit} type='submit'></button>
+                    <button onClick={onSubmit} type='submit'>
+                        Send
+                    </button>
                 </form>
             </main>
         </>
