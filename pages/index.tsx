@@ -60,7 +60,14 @@ export default function Home() {
         <>
             <Head>Chat To Fictional Characters</Head>
             <main className={`${styles.main} ${inter.className}`}>
-                <h1 className={styles.heading}>Ask me anything!</h1>
+                <div className={styles.titleContainer}>
+                    <select className={styles.dropdownMenu}>
+                        <option className={styles.dropdownItem}>Homer Simpson</option>
+                        <option className={styles.dropdownItem}>Batman</option>
+                        <option className={styles.dropdownItem}>Spongebob</option>
+                    </select>
+                    <h1 className={styles.heading}>Ask me anything!</h1>
+                </div>
                 <div className={styles.chatContainer}>
                     <div className={styles.chat}>
                         {result.map((msg) => (

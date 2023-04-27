@@ -37,6 +37,24 @@
     margin-left: auto !important;
 }
 
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 50px;
+}
+
+.dropdownMenu {
+    display: flex;
+    overflow: hidden;
+}
+
+.dropdownItem {
+    background-color: white;
+}
+
 .chatContainer {
     background-color: white;
     max-width: 900px;
@@ -44,7 +62,7 @@
     height: 70vh;
     padding: 20px;
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 10px;
     scroll-behavior: auto;
     overflow: scroll;
     overflow-x: hidden;
