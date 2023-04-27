@@ -7,7 +7,7 @@
 // console.log(process.env.OPENAI_API_KEY)
 require('dotenv').config()
 import {NextApiRequest, NextApiResponse} from 'next/types'
-import {Configuration, OpenAIApi} from 'openai'
+import {ChatCompletionResponseMessage, Configuration, OpenAIApi} from 'openai'
 import {type} from 'os'
 
 const configuration = new Configuration({
@@ -76,7 +76,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 }
 
-function generatePrompt(message: String, character: String) {
+function generatePrompt(
+    message: String,
+    character: String
+): ChatCompletionResponseMessage[] {
     return [
         {
             role: 'system',
