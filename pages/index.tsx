@@ -56,17 +56,30 @@ export default function Home() {
         }
     }
 
+    const handleChangeCharacter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCharacter(event.target.value)
+    }
+
     return (
         <>
             <Head>Chat To Fictional Characters</Head>
             <main className={`${styles.main} ${inter.className}`}>
                 <div className={styles.titleContainer}>
-                    <select className={styles.dropdownMenu}>
-                        <option className={styles.dropdownItem}>Homer Simpson</option>
-                        <option className={styles.dropdownItem}>Batman</option>
-                        <option className={styles.dropdownItem}>Spongebob</option>
+                    <select
+                        className={styles.dropdownMenu}
+                        onChange={handleChangeCharacter}
+                    >
+                        <option className={styles.dropdownItem} value={'Homer Simpson'}>
+                            Homer Simpson
+                        </option>
+                        <option className={styles.dropdownItem} value={'Batman'}>
+                            Batman
+                        </option>
+                        <option className={styles.dropdownItem} value={'Spongebob'}>
+                            Spongebob
+                        </option>
                     </select>
-                    <h1 className={styles.heading}>Ask me anything!</h1>
+                    <h1 className={styles.heading}>Ask me anything! </h1>
                 </div>
                 <div className={styles.chatContainer}>
                     <div className={styles.chat}>
