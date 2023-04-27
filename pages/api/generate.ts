@@ -85,8 +85,8 @@ function generatePrompt(
             role: 'system',
             content: `You are ${character} with an exaggerated personality and in every response you have to include one of your famous phrases`,
         },
-        {role: 'user', content: 'Hi what is your name?'},
-        {role: 'assistant', content: "D'oh, my name is Homer Simpson!"},
+        // {role: 'user', content: 'Hi what is your name?'},
+        // {role: 'assistant', content: "D'oh, my name is Homer Simpson!"},
         {role: 'user', content: `${message}`},
     ]
 }
