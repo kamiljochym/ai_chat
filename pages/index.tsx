@@ -1,22 +1,25 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import {Inter} from 'next/font/google'
+import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import {ChangeEvent, useState, MouseEvent, HtmlHTMLAttributes} from 'react'
-import {log} from 'console'
-import {resolve} from 'path/win32'
+import { useState } from 'react'
+import Dropdown from './components/Dropdown'
 
-const inter = Inter({subsets: ['latin']})
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    const [result, setResult] = useState<{role: string; content: string}[]>([])
+    const [result, setResult] = useState<{ role: string; content: string }[]>([])
     const [messageInput, setMessageInput] = useState('')
     const [character, setCharacter] = useState('Homer Simpson')
 
     const onSubmit = async (
         event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
     ) => {
-        setResult((prevResult) => [...prevResult, {role: 'user', content: messageInput}])
+        setResult((prevResult) => [
+            ...prevResult,
+            { role: 'user', content: messageInput },
+        ])
+
         setMessageInput('')
         event.preventDefault()
         try {
@@ -25,7 +28,7 @@ export default function Home() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({message: messageInput, character: character}),
+                body: JSON.stringify({ message: messageInput, character: character }),
             })
 
             const data = await response.json()
@@ -56,7 +59,9 @@ export default function Home() {
         }
     }
 
-    const handleChangeCharacter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChangeCharacter = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         setCharacter(event.target.value)
     }
 
@@ -65,26 +70,18 @@ export default function Home() {
             <Head>Chat To Fictional Characters</Head>
             <main className={`${styles.main} ${inter.className}`}>
                 <div className={styles.titleContainer}>
-                    <select
-                        className={styles.dropdownMenu}
-                        onChange={handleChangeCharacter}
-                    >
-                        <option className={styles.dropdownItem} value={'Homer Simpson'}>
-                            Homer Simpson
-                        </option>
-                        <option className={styles.dropdownItem} value={'Batman'}>
-                            Batman
-                        </option>
-                        <option className={styles.dropdownItem} value={'Spongebob'}>
-                            Spongebob
-                        </option>
-                    </select>
+                    <Dropdown
+                        names={['Homer Simpson', 'Batman', 'Spongebob']}
+                        handleChangeCharacter={handleChangeCharacter}
+                    />
                     <h1 className={styles.heading}>Ask me anything! </h1>
                 </div>
                 <div className={styles.chatContainer}>
                     <div className={styles.chat}>
-                        {result.map((msg) => (
-                            <p className={`${styles[msg.role]}`}>{msg.content}</p>
+                        {result.map((msg, idx) => (
+                            <p className={`${styles[msg.role]}`} key={idx}>
+                                {msg.content}
+                            </p>
                         ))}
                     </div>
                 </div>

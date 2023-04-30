@@ -15,11 +15,6 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-type Messages = {
-    role: string
-    content: string
-}
-
 export default async function (req: NextApiRequest, res: NextApiResponse) {
     if (!configuration.apiKey) {
         res.status(500).json({

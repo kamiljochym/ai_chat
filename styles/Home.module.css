@@ -1,98 +1,98 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
 }
 
 .heading {
-    color: white;
+  color: white;
 }
 
 .chat {
-    display: inherit;
-    justify-content: inherit;
-    align-items: inherit;
-    font-size: 0.85rem;
-    z-index: 2;
-    font-family: var(--font-mono);
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  font-size: 0.85rem;
+  z-index: 2;
+  font-family: var(--font-mono);
 }
 
 .chat p {
-    position: relative;
-    margin: 0;
-    margin-bottom: 20px;
-    padding: 1rem;
-    background-color: rgba(var(--callout-rgb), 0.5);
-    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-    border-radius: var(--border-radius);
-    max-width: 80%;
-    width: max-content;
+  position: relative;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 1rem;
+  background-color: rgba(var(--callout-rgb), 0.5);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  max-width: 80%;
+  width: max-content;
 }
 
 .user {
-    background-color: #1982fc !important;
-    color: white;
-    margin-left: auto !important;
+  background-color: #1982fc !important;
+  color: white;
+  margin-left: auto !important;
 }
 
 .titleContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 900px;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 50px;
 }
 
 .dropdownMenu {
-    display: flex;
-    overflow: hidden;
+  display: flex;
+  overflow: hidden;
 }
 
 .dropdownItem {
-    background-color: white;
+  background-color: white;
 }
 
 .chatContainer {
-    background-color: white;
-    max-width: 900px;
-    width: 100%;
-    height: 70vh;
-    padding: 20px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    scroll-behavior: auto;
-    overflow: scroll;
-    overflow-x: hidden;
+  background-color: white;
+  max-width: 900px;
+  width: 100%;
+  height: 70vh;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  scroll-behavior: auto;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 900px;
 }
 
 .inputContainer button {
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .inputBox {
-    max-width: 900px;
-    width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-    resize: none;
-    overflow-wrap: break-word;
-    overflow-y: hidden;
+  max-width: 900px;
+  width: 100%;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  resize: none;
+  overflow-wrap: break-word;
+  overflow-y: hidden;
 }
 
 .inputBox:focus {
-    outline: 2px solid green;
+  outline: 2px solid green;
 }
